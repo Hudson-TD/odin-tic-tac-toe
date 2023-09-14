@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <header class="header-container">
+      <h1>Tic-Tac-Toe</h1>
+      <div></div>
+    </header>
+    <main class="parent-container">
+      <div class="gameboard" id="gameboard">
+        <div class="cell no-top no-left" data-cell></div>
+        <div class="cell no-top" data-cell></div>
+        <div class="cell no-top no-right" data-cell></div>
+        <div class="cell no-left" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell no-right" data-cell></div>
+        <div class="cell no-left no-bottom" data-cell></div>
+        <div class="cell no-bottom" data-cell></div>
+        <div class="cell no-right no-bottom" data-cell></div>
+      </div>
+      <div class="winning-message" id="winningMessage">
+        <div data-winning-message-text></div>
+        <button id="restartButton">Restart</button>
+      </div>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
