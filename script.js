@@ -1,7 +1,43 @@
-let selectedCell;
+// const players = {
+//   players: [],
 
-const gameboard = {
-  gameboard: ["X", "X", "X", "X", "X", "X", "X", "X", "X", "X"],
+//   // Initialize gameboard
+//   init: function () {
+//     this.cacheDom();
+//     this.initEventListeners();
+//   },
+//   // DOM element targets
+//   cacheDom: function () {
+//     this.playerOneInput = document.getElementById("player-one-input").value;
+//     this.playerTwoInput = document.getElementById("player-two-input").value;
+//     this.formSubmitBtn = document.getElementById("form-submit-button");
+//   },
+//   initEventListeners: function () {
+//     this.formSubmitBtn.addEventListener("click", this.handleSubmit);
+//   },
+//   handleSubmit: function (event) {
+//     event.preventDefault();
+//     this.playerOneName = this.playerOneInput.value;
+//     this.playerTwoName = this.playerTwoInput.value;
+//     console.log(this.playerOneName);
+//     console.log(this.playerTwoName);
+//     // var target = event.target;
+//     // var parent = target.parentElement;
+//     // parent.classList.add("hidden");
+//   },
+// };
+// players.init();
+
+function createPlayer(name) {
+  return {
+    name: name,
+    score: 0,
+  };
+}
+
+const gameBoard = {
+  gameboard: ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O"],
+  selectedCell: this.selectedCell,
   // Initialize gameboard
   init: function () {
     this.cacheDom();
@@ -9,19 +45,11 @@ const gameboard = {
   },
   // DOM element targets
   cacheDom: function () {
-    this.$gameboard = document.getElementById("gameboard");
-    this.$restartBtn = document.getElementById("restartButton");
+    this.gameboard = document.getElementById("gameboard");
+    this.restartBtn = document.getElementById("restartButton");
   },
   initEventListeners: function () {
-    this.$gameboard.addEventListener("click", this.highlightCell);
-  },
-  // Update DOM with P1 marker
-  insertPlayerOne: function () {
-    // find target (event), update innerText to display marker
-  },
-  // Update DOM with P2 marker
-  insertPlayerTwo: function () {
-    // find target (event), update innerText to display marker
+    this.gameboard.addEventListener("click", this.highlightCell);
   },
   //dev function to test DOM targeting - delete when no-longer needed
   highlightCell: function (event) {
@@ -32,11 +60,15 @@ const gameboard = {
   },
 };
 
-gameboard.init();
+gameBoard.init();
 
-const players = {
-  players: [],
-  createPlayerOne: function (name) {
-    this.players.push(name);
+const gameLogic = {
+  // Update DOM with P1 marker
+  insertPlayerOne: function () {
+    // find target (event), update innerText to display marker
+  },
+  // Update DOM with P2 marker
+  insertPlayerTwo: function () {
+    // find target (event), update innerText to display marker
   },
 };
