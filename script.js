@@ -1,3 +1,5 @@
+let selectedCell;
+
 const gameboard = {
   gameboard: ["X", "X", "X", "X", "X", "X", "X", "X", "X", "X"],
   // Initialize gameboard
@@ -11,7 +13,7 @@ const gameboard = {
     this.$restartBtn = document.getElementById("restartButton");
   },
   initEventListeners: function () {
-    this.$gameboard.addEventListener("click", this.handleCellClicks);
+    this.$gameboard.addEventListener("click", this.highlightCell);
   },
   // Update DOM with P1 marker
   insertPlayerOne: function () {
@@ -21,18 +23,12 @@ const gameboard = {
   insertPlayerTwo: function () {
     // find target (event), update innerText to display marker
   },
-  handleCellClicks: function (event) {
-    let selectedCell = event.target;
-    console.log(selectedCell);
-  },
   //dev function to test DOM targeting - delete when no-longer needed
-  highlight: function (cell) {
-    if (selectedTd) {
-      // remove the existing highlight if any
-      selectedTd.classList.remove("highlight");
-    }
-    selectedTd = td;
-    selectedTd.classList.add("highlight"); // highlight the new td
+  highlightCell: function (event) {
+    let selectedCell = event.target;
+    selectedCell.classList.contains("highlight")
+      ? selectedCell.classList.remove("highlight")
+      : selectedCell.classList.add("highlight");
   },
 };
 
