@@ -1,3 +1,8 @@
+:root {
+  --cell-size: 200px;
+  --marker-size: calc(var(--cell-size) * 0.8);
+}
+
 .header-container {
   display: flex;
   justify-content: center;
@@ -12,8 +17,8 @@
 .gameboard {
   display: grid;
   width: 600px;
-  grid-template-columns: repeat(3, 200px);
-  grid-template-rows: repeat(3, 200px);
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
 }
 
 .cell {
@@ -35,4 +40,8 @@
 
 .no-bottom {
   border-bottom: none;
+}
+
+.highlight {
+  background-color: yellow;
 }
