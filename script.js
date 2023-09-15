@@ -35,6 +35,16 @@ function createPlayer(name) {
   };
 }
 
+const roundCounter = () => {
+  let count = 0;
+  return () => {
+    console.log(count);
+    count++;
+  };
+};
+
+const counter = counterCreator();
+
 const gameBoard = {
   gameboard: ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O"],
   selectedCell: this.selectedCell,
