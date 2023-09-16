@@ -30,7 +30,7 @@
 
 function createPlayer(name) {
   return {
-    name: name,
+    name,
     score: 0,
   };
 }
@@ -43,7 +43,50 @@ const roundCounter = () => {
   };
 };
 
-const counter = counterCreator();
+const playerCreation = {
+  players: [],
+  inputOne: "",
+  inputTwo: "",
+  init: function () {
+    this.playerCreationDom();
+    this.initEventListeners();
+  },
+  playerCreationDom: function () {
+    this.playerOneInput = document.getElementById("player-one-input");
+    this.playerTwoInput = document.getElementById("player-two-input");
+    this.formSubmitBtn = document.getElementById("form-submit-button");
+  },
+  initEventListeners: function () {
+    this.playerOneInput.addEventListener("input", this.handleInputValue);
+    this.playerTwoInput.addEventListener("input", this.handleInputValue);
+    this.formSubmitBtn.addEventListener("click", this.handleSubmit);
+  },
+  handleInputValue: function (event) {
+    this.input = event.target.value;
+    console.log(this.input);
+    if (event.target.getAttribute("id") === "player-one-input") {
+      playerCreation.inputOne = this.input;
+    } else {
+      playerCreation.inputTwo = this.input;
+    }
+  },
+  handleSubmit: function (event) {
+    event.preventDefault();
+
+    let playerOne = createPlayer(playerCreation.inputOne);
+    playerCreation.players.push(playerOne);
+    let playerTwo = createPlayer(playerCreation.inputTwo);
+    playerCreation.players.push(playerTwo);
+
+    console.log(playerCreation.players);
+
+    // var target = event.target;
+    // var parent = target.parentElement;
+    // parent.classList.add("hidden");
+  },
+};
+
+playerCreation.init();
 
 const gameBoard = {
   gameboard: ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O"],
