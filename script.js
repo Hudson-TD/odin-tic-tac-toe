@@ -86,8 +86,10 @@ const gameBoard = {
 
     if (gameController.turn % 2 === 1) {
       selectedCell.innerText = "X";
+      selectedCell.classList.add("X");
     } else {
       selectedCell.innerText = "O";
+      selectedCell.classList.add("X");
     }
     gameController.nextTurn();
   },

@@ -47,10 +47,19 @@
 .cell {
   border: 2px solid black;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .claimed {
-  background-color: aquamarine;
+  background-color: white;
+}
+
+.X,
+.O {
+  font-size: 125px;
+  font-weight: bold;
 }
 
 .no-top {
