@@ -55,8 +55,6 @@ const playerCreation = {
 };
 
 const gameBoard = {
-  gameboard: ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O"],
-  selectedCell: this.selectedCell,
   // Initialize gameboard
   init: function () {
     this.cacheDom();
@@ -71,13 +69,20 @@ const gameBoard = {
     this.playerTwoName = document.getElementById("player-two-name");
   },
   initEventListeners: function () {
-    this.gameboard.addEventListener("click", this.claimCell);
+    this.gameboard.addEventListener("click", gameController.claimCell);
   },
   reveal: function () {
     this.playerOneName.innerText = playerCreation.players[0].name;
     this.playerTwoName.innerText = playerCreation.players[1].name;
     this.gameDisplay.classList.remove("hidden");
   },
+};
+
+const gameController = {
+  turn: 1,
+  playerOneSelections: [],
+  playerTwoSelection: [],
+  selectedCell: this.selectedCell,
   claimCell: function (event) {
     let selectedCell = event.target;
     if (selectedCell.classList.contains("claimed")) return;
@@ -93,25 +98,8 @@ const gameBoard = {
     }
     gameController.nextTurn();
   },
-};
-
-const gameController = {
-  turn: 1,
   nextTurn: function () {
     gameController.turn++;
-  },
-  playerOneTurn: function () {},
-  playerTwoTurn: function () {},
-  // Update DOM with P1 marker
-  insertPlayerOne: function () {
-    // find target (event), update innerText to display marker
-  },
-  // Update DOM with P2 marker
-  insertPlayerTwo: function () {
-    // find target (event), update innerText to display marker
-  },
-  startRound: function () {
-    countRound();
   },
 };
 
