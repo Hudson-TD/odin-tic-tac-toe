@@ -10,22 +10,22 @@
     <header class="header-container">
       <h1>Tic-Tac-Toe</h1>
     </header>
-    <div id="player-input-container">
+    <form id="player-input-container">
       <label for="player-one-input">Enter Name for Player 1:</label>
-      <input type="text" id="player-one-input" />
+      <input type="text" id="player-one-input" required />
       <label for="player-two-input">Enter Name for Player 1:</label>
-      <input type="text" id="player-two-input" />
+      <input type="text" id="player-two-input" required />
       <button type="button" id="form-submit-button">Let's Play!</button>
-    </div>
-    <main class="parent-container hidden">
+    </form>
+    <main id="game-display-container" class="parent-container hidden">
       <div class="player-container">
         <div id="player-one-info">
-          <h2 class="score">Score:</h2>
-          <p id="player-one-name">Name One</p>
+          <h2 id="player-one-name"></h2>
+          <h4 class="score">Score:</h4>
         </div>
         <div id="player-two-info">
-          <h2 class="score">Score:</h2>
-          <p id="player-two-name">Name Two</p>
+          <h2 id="player-two-name"></h2>
+          <h4 class="score">Score:</h4>
         </div>
       </div>
       <div class="gameboard" id="gameboard">

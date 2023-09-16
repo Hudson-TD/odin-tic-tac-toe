@@ -25,6 +25,18 @@
   align-items: center;
 }
 
+.player-container {
+  display: flex;
+  gap: 100px;
+  margin-bottom: 50px;
+}
+
+#player-one-info,
+#player-two-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .gameboard {
   display: grid;
   width: 600px;
