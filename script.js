@@ -5,14 +5,6 @@ function createPlayer(name) {
     score: 0,
   };
 }
-// Tracking turn via private variable
-const roundCounter = () => {
-  let count = 0;
-  return () => {
-    console.log(count);
-    count++;
-  };
-};
 
 const playerCreation = {
   players: [],
@@ -62,8 +54,6 @@ const playerCreation = {
   },
 };
 
-playerCreation.init();
-
 const gameBoard = {
   gameboard: ["X", "O", "X", "O", "X", "O", "X", "O", "X", "O"],
   selectedCell: this.selectedCell,
@@ -81,25 +71,35 @@ const gameBoard = {
     this.playerTwoName = document.getElementById("player-two-name");
   },
   initEventListeners: function () {
-    this.gameboard.addEventListener("click", this.highlightCell);
+    this.gameboard.addEventListener("click", this.claimCell);
   },
   reveal: function () {
     this.playerOneName.innerText = playerCreation.players[0].name;
     this.playerTwoName.innerText = playerCreation.players[1].name;
     this.gameDisplay.classList.remove("hidden");
   },
-  //dev function to test DOM targeting - delete when no-longer needed
-  highlightCell: function (event) {
+  claimCell: function (event) {
     let selectedCell = event.target;
-    selectedCell.classList.contains("highlight")
-      ? selectedCell.classList.remove("highlight")
-      : selectedCell.classList.add("highlight");
+    if (selectedCell.classList.contains("claimed")) return;
+
+    selectedCell.classList.add("claimed");
+
+    if (gameController.turn % 2 === 1) {
+      selectedCell.innerText = "X";
+    } else {
+      selectedCell.innerText = "O";
+    }
+    gameController.nextTurn();
   },
 };
 
-gameBoard.init();
-
-const gameLogic = {
+const gameController = {
+  turn: 1,
+  nextTurn: function () {
+    gameController.turn++;
+  },
+  playerOneTurn: function () {},
+  playerTwoTurn: function () {},
   // Update DOM with P1 marker
   insertPlayerOne: function () {
     // find target (event), update innerText to display marker
@@ -108,4 +108,10 @@ const gameLogic = {
   insertPlayerTwo: function () {
     // find target (event), update innerText to display marker
   },
+  startRound: function () {
+    countRound();
+  },
 };
+
+playerCreation.init();
+gameBoard.init();

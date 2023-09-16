@@ -49,6 +49,10 @@
   background-color: white;
 }
 
+.claimed {
+  background-color: aquamarine;
+}
+
 .no-top {
   border-top: none;
 }
@@ -63,10 +67,6 @@
 
 .no-bottom {
   border-bottom: none;
-}
-
-.highlight {
-  background-color: yellow;
 }
 
 .hidden {
