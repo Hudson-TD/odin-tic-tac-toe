@@ -81,7 +81,7 @@ const gameBoard = {
 const gameController = {
   turn: 1,
   playerOneSelections: [],
-  playerTwoSelection: [],
+  playerTwoSelections: [],
   selectedCell: this.selectedCell,
   claimCell: function (event) {
     let selectedCell = event.target;
@@ -92,14 +92,56 @@ const gameController = {
     if (gameController.turn % 2 === 1) {
       selectedCell.innerText = "X";
       selectedCell.classList.add("X");
+      gameController.updateChoiceArr(selectedCell);
     } else {
       selectedCell.innerText = "O";
-      selectedCell.classList.add("X");
+      selectedCell.classList.add("O");
+      gameController.updateChoiceArr(selectedCell);
     }
+    gameController.checkForWinner(
+      gameController.playerOneSelections,
+      gameController.playerTwoSelections
+    );
     gameController.nextTurn();
+  },
+  updateChoiceArr: function (cell) {
+    let choice = cell.dataset.cell;
+    console.log(choice);
+
+    if (gameController.turn % 2 === 1) {
+      this.playerOneSelections.push(choice);
+      console.log(`Player One Choices: ${this.playerOneSelections}`);
+    } else {
+      this.playerTwoSelections.push(choice);
+      console.log(`Player Two Choices: ${this.playerTwoSelections}`);
+    }
   },
   nextTurn: function () {
     gameController.turn++;
+    console.log(gameController.turn);
+  },
+  checkForWinner: function (playerArrOne, playerArrTwo) {
+    const draw = gameController.turn;
+    const winningArrs = [
+      ["1", "2", "3"],
+      ["4", "5", "6"],
+      ["7", "8", "9"],
+      ["1", "4", "7"],
+      ["2", "5", "8"],
+      ["3", "6", "9"],
+      ["1", "5", "9"],
+      ["3", "5", "7"],
+    ];
+
+    for (let i = 0; i < winningArrs.length; i++) {
+      if (winningArrs[i].every((value) => playerArrOne.includes(value))) {
+        window.alert("Player One Wins!");
+      } else if (
+        winningArrs[i].every((value) => playerArrTwo.includes(value))
+      ) {
+        window.alert("Player Two Wins!");
+      }
+    }
   },
 };
 
