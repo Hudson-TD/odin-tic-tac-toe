@@ -1,5 +1,15 @@
-* {
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
   font-family: "Russo One", sans-serif;
+}
+
+body {
+  padding: 20px;
+
+  background-color: rgba(223, 222, 222, 0.747);
 }
 
 :root {
@@ -73,13 +83,21 @@
   display: flex;
   gap: 200px;
   margin-bottom: 50px;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
 }
 
 #player-one-info,
 #player-two-info {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 80px;
+  background-color: #81ae9d;
+  border-radius: 30px;
+  margin-top: 10px;
+  letter-spacing: 2px;
 }
 
 .gameboard {
@@ -87,6 +105,8 @@
   width: 600px;
   grid-template-columns: repeat(3, var(--cell-size));
   grid-template-rows: repeat(3, var(--cell-size));
+  border: 5px solid white;
+  border-radius: 8px;
 }
 
 .cell {
