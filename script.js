@@ -164,7 +164,6 @@ const gameController = {
     console.log(`Starting Turn: ${this.turn}`);
   },
   checkForWinner: function (playerArrOne, playerArrTwo) {
-    const draw = gameController.turn;
     const winningArrs = [
       ["1", "2", "3"],
       ["4", "5", "6"],
@@ -186,6 +185,8 @@ const gameController = {
       ) {
         playerCreation.players[1].score++;
         gameBoard.playerTwoScore.innerText = `Score: ${playerCreation.players[1].score}`;
+        gameController.newGame();
+      } else if (gameController.turn === 10 || gameController.turn === 11) {
         gameController.newGame();
       }
     }
