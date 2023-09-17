@@ -26,11 +26,10 @@ const playerCreation = {
   },
   handleInputValue: function (event) {
     this.input = event.target.value;
-    console.log(this.input);
     if (event.target.getAttribute("id") === "player-one-input") {
-      playerCreation.inputOne = this.input;
+      playerCreation.inputOne = `${this.input}`;
     } else {
-      playerCreation.inputTwo = this.input;
+      playerCreation.inputTwo = `${this.input}`;
     }
   },
   handleSubmit: function (event) {
@@ -50,6 +49,7 @@ const playerCreation = {
       var playerInfoForm = submitButtonElement.parentElement;
       playerInfoForm.classList.add("hidden");
       gameBoard.reveal();
+      gameController.newGame();
     }
   },
 };
@@ -63,10 +63,15 @@ const gameBoard = {
   // DOM element targets
   cacheDom: function () {
     this.gameboard = document.getElementById("gameboard");
+    this.allCells = document.querySelectorAll(".cell");
     this.gameDisplay = document.getElementById("game-display-container");
     this.restartBtn = document.getElementById("restartButton");
     this.playerOneName = document.getElementById("player-one-name");
     this.playerTwoName = document.getElementById("player-two-name");
+    this.playerOneScore = document.getElementById("player-one-score");
+    this.playerTwoScore = document.getElementById("player-two-score");
+    this.playerOneActive = document.getElementById("player-one-active");
+    this.playerTwoActive = document.getElementById("player-two-active");
   },
   initEventListeners: function () {
     this.gameboard.addEventListener("click", gameController.claimCell);
@@ -75,11 +80,12 @@ const gameBoard = {
     this.playerOneName.innerText = playerCreation.players[0].name;
     this.playerTwoName.innerText = playerCreation.players[1].name;
     this.gameDisplay.classList.remove("hidden");
+    gameController.displayActivePlayer();
   },
 };
 
 const gameController = {
-  turn: 1,
+  turn: null,
   playerOneSelections: [],
   playerTwoSelections: [],
   selectedCell: this.selectedCell,
@@ -93,7 +99,7 @@ const gameController = {
       selectedCell.innerText = "X";
       selectedCell.classList.add("X");
       gameController.updateChoiceArr(selectedCell);
-    } else {
+    } else if (gameController.turn % 2 === 0) {
       selectedCell.innerText = "O";
       selectedCell.classList.add("O");
       gameController.updateChoiceArr(selectedCell);
@@ -111,14 +117,51 @@ const gameController = {
     if (gameController.turn % 2 === 1) {
       this.playerOneSelections.push(choice);
       console.log(`Player One Choices: ${this.playerOneSelections}`);
-    } else {
+    } else if (gameController.turn % 2 === 0) {
       this.playerTwoSelections.push(choice);
       console.log(`Player Two Choices: ${this.playerTwoSelections}`);
     }
   },
+  matchStarter: function () {
+    const randomValue = Math.random();
+
+    if (randomValue < 0.5) {
+      return 1;
+    } else {
+      return 2;
+    }
+  },
   nextTurn: function () {
     gameController.turn++;
-    console.log(gameController.turn);
+    this.displayActivePlayer();
+    console.log(`Current Turn: ${this.turn}`);
+  },
+  clearCells: function () {
+    gameBoard.allCells.forEach((cell) => {
+      if (cell.classList.contains("claimed")) {
+        cell.innerText = "";
+        cell.classList.remove("claimed");
+        cell.classList.remove("X");
+        cell.classList.remove("O");
+      }
+    });
+  },
+  displayActivePlayer: function () {
+    if (gameController.turn % 2 === 1) {
+      gameBoard.playerOneActive.classList.remove("transparent");
+      gameBoard.playerTwoActive.classList.add("transparent");
+    } else {
+      gameBoard.playerTwoActive.classList.remove("transparent");
+      gameBoard.playerOneActive.classList.add("transparent");
+    }
+  },
+  newGame: function () {
+    gameController.clearCells();
+    this.playerOneSelections = [];
+    this.playerTwoSelections = [];
+    this.turn = this.matchStarter();
+    this.displayActivePlayer();
+    console.log(`Starting Turn: ${this.turn}`);
   },
   checkForWinner: function (playerArrOne, playerArrTwo) {
     const draw = gameController.turn;
@@ -135,11 +178,15 @@ const gameController = {
 
     for (let i = 0; i < winningArrs.length; i++) {
       if (winningArrs[i].every((value) => playerArrOne.includes(value))) {
-        window.alert("Player One Wins!");
+        playerCreation.players[0].score++;
+        gameBoard.playerOneScore.innerText = `Score: ${playerCreation.players[0].score}`;
+        gameController.newGame();
       } else if (
         winningArrs[i].every((value) => playerArrTwo.includes(value))
       ) {
-        window.alert("Player Two Wins!");
+        playerCreation.players[1].score++;
+        gameBoard.playerTwoScore.innerText = `Score: ${playerCreation.players[1].score}`;
+        gameController.newGame();
       }
     }
   },

@@ -11,6 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
   </head>
   <body>
     <header class="header-container">
@@ -28,12 +32,18 @@
     <main id="game-display-container" class="parent-container hidden">
       <div class="player-container">
         <div id="player-one-info">
+          <div class="transparent" id="player-one-active">
+            <p class="material-symbols-outlined">keyboard_arrow_down</p>
+          </div>
           <h2 id="player-one-name"></h2>
-          <h4 class="score">Score:</h4>
+          <h4 class="score" id="player-one-score">Score:</h4>
         </div>
         <div id="player-two-info">
+          <div class="transparent" id="player-two-active">
+            <p class="material-symbols-outlined">keyboard_arrow_down</p>
+          </div>
           <h2 id="player-two-name"></h2>
-          <h4 class="score">Score:</h4>
+          <h4 class="score" id="player-two-score">Score:</h4>
         </div>
       </div>
       <div class="gameboard" id="gameboard">

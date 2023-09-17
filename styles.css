@@ -6,6 +6,12 @@
   font-family: "Russo One", sans-serif;
 }
 
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  transform: scale(3);
+  color: yellow;
+}
+
 body {
   padding: 20px;
 
@@ -93,7 +99,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 200px;
-  height: 80px;
+  height: 90px;
   background-color: #81ae9d;
   border-radius: 30px;
   margin-top: 10px;
@@ -150,4 +156,8 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+.transparent {
+  visibility: hidden !important;
 }
