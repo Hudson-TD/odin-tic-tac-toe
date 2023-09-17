@@ -5,18 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Odin Project: Tic-Tac-Toe</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="header-container">
       <h1>Tic-Tac-Toe</h1>
     </header>
-    <form id="player-input-container">
-      <label for="player-one-input">Enter Name for Player 1:</label>
-      <input type="text" id="player-one-input" required />
-      <label for="player-two-input">Enter Name for Player 1:</label>
-      <input type="text" id="player-two-input" required />
-      <button type="button" id="form-submit-button">Let's Play!</button>
-    </form>
+    <section class="form-container">
+      <form class="player-name-form">
+        <label for="player-one-input">Player 1:</label>
+        <input type="text" id="player-one-input" required />
+        <label for="player-two-input">Player 2:</label>
+        <input type="text" id="player-two-input" required />
+        <button type="button" id="form-submit-button">Let's Play!</button>
+      </form>
+    </section>
     <main id="game-display-container" class="parent-container hidden">
       <div class="player-container">
         <div id="player-one-info">
@@ -39,7 +47,7 @@
         <div class="cell no-bottom" data-cell="8"></div>
         <div class="cell no-right no-bottom" data-cell="9"></div>
       </div>
-      <div class="winning-message" id="winningMessage">
+      <div class="winning-message hidden" id="winningMessage">
         <div data-winning-message-text></div>
         <button id="restartButton">Restart</button>
       </div>
