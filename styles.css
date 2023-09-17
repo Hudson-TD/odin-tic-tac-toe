@@ -8,13 +8,11 @@
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  transform: scale(3);
   color: yellow;
+  transform: scale(2.5);
 }
 
 body {
-  padding: 20px;
-
   background-color: rgba(223, 222, 222, 0.747);
 }
 
@@ -31,6 +29,8 @@ body {
   border-bottom: 5px solid black;
   letter-spacing: 10px;
   font-size: 1.5rem;
+  transform: scale(0.75, 1.5);
+  margin-top: 10px;
 }
 
 .form-container {
@@ -38,12 +38,18 @@ body {
   justify-content: center;
 }
 
+.form-header {
+  text-align: center;
+  text-decoration: underline;
+  letter-spacing: 5px;
+}
+
 .player-name-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 100px;
-  padding: 100px;
+  padding: 50px;
   width: 250px;
   gap: 25px;
   border-radius: 30px;
@@ -87,7 +93,7 @@ body {
 
 .player-container {
   display: flex;
-  gap: 200px;
+  gap: 80px;
   margin-bottom: 50px;
   font-size: 1.05rem;
 }
@@ -102,8 +108,32 @@ body {
   height: 90px;
   background-color: #81ae9d;
   border-radius: 30px;
-  margin-top: 10px;
+  margin-top: 35px;
   letter-spacing: 2px;
+}
+
+.reset-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.reset {
+  height: 2.5rem;
+  width: 150px;
+  border-radius: 8px;
+  border: 5px solid white;
+  border-color: black;
+  background-color: yellow;
+  color: #1a1423;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.reset:hover {
+  background-color: rgb(161, 0, 0);
+  color: white;
 }
 
 .gameboard {

@@ -43,7 +43,6 @@ const playerCreation = {
       playerCreation.players.push(playerOne);
       let playerTwo = createPlayer(playerCreation.inputTwo);
       playerCreation.players.push(playerTwo);
-      console.log(playerCreation.players);
 
       var submitButtonElement = event.target;
       var playerInfoForm = submitButtonElement.parentElement;
@@ -65,7 +64,7 @@ const gameBoard = {
     this.gameboard = document.getElementById("gameboard");
     this.allCells = document.querySelectorAll(".cell");
     this.gameDisplay = document.getElementById("game-display-container");
-    this.restartBtn = document.getElementById("restartButton");
+    this.resetBtn = document.getElementById("resetBtn");
     this.playerOneName = document.getElementById("player-one-name");
     this.playerTwoName = document.getElementById("player-two-name");
     this.playerOneScore = document.getElementById("player-one-score");
@@ -75,6 +74,10 @@ const gameBoard = {
   },
   initEventListeners: function () {
     this.gameboard.addEventListener("click", gameController.claimCell);
+    this.resetBtn.addEventListener("click", gameBoard.handleReset);
+  },
+  handleReset: function () {
+    window.location.reload();
   },
   reveal: function () {
     this.playerOneName.innerText = playerCreation.players[0].name;
@@ -86,6 +89,7 @@ const gameBoard = {
 
 const gameController = {
   turn: null,
+  startingTurn: null,
   playerOneSelections: [],
   playerTwoSelections: [],
   selectedCell: this.selectedCell,
@@ -112,14 +116,11 @@ const gameController = {
   },
   updateChoiceArr: function (cell) {
     let choice = cell.dataset.cell;
-    console.log(choice);
 
     if (gameController.turn % 2 === 1) {
       this.playerOneSelections.push(choice);
-      console.log(`Player One Choices: ${this.playerOneSelections}`);
     } else if (gameController.turn % 2 === 0) {
       this.playerTwoSelections.push(choice);
-      console.log(`Player Two Choices: ${this.playerTwoSelections}`);
     }
   },
   matchStarter: function () {
@@ -134,7 +135,7 @@ const gameController = {
   nextTurn: function () {
     gameController.turn++;
     this.displayActivePlayer();
-    console.log(`Current Turn: ${this.turn}`);
+    console.log(this.turn);
   },
   clearCells: function () {
     gameBoard.allCells.forEach((cell) => {
@@ -156,10 +157,12 @@ const gameController = {
     }
   },
   newGame: function () {
+    let flowKey = this.matchStarter();
     gameController.clearCells();
     this.playerOneSelections = [];
     this.playerTwoSelections = [];
-    this.turn = this.matchStarter();
+    this.turn = flowKey;
+    this.startingTurn = flowKey;
     this.displayActivePlayer();
     console.log(`Starting Turn: ${this.turn}`);
   },
@@ -186,7 +189,15 @@ const gameController = {
         playerCreation.players[1].score++;
         gameBoard.playerTwoScore.innerText = `Score: ${playerCreation.players[1].score}`;
         gameController.newGame();
-      } else if (gameController.turn === 10 || gameController.turn === 11) {
+      } else if (
+        gameController.startingTurn === 1 &&
+        gameController.turn === 10
+      ) {
+        gameController.newGame();
+      } else if (
+        gameController.startingTurn === 2 &&
+        gameController.turn === 11
+      ) {
         gameController.newGame();
       }
     }

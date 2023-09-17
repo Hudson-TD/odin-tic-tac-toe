@@ -22,10 +22,22 @@
     </header>
     <section class="form-container">
       <form class="player-name-form">
+        <h2 class="form-header">Welcome!</h2>
+        <p class="form-sub-header">Please enter player names below to start.</p>
         <label for="player-one-input">Player 1:</label>
-        <input type="text" id="player-one-input" required />
+        <input
+          type="text"
+          id="player-one-input"
+          placeholder="Symbol X"
+          required
+        />
         <label for="player-two-input">Player 2:</label>
-        <input type="text" id="player-two-input" required />
+        <input
+          type="text"
+          id="player-two-input"
+          placeholder="Symbol O"
+          required
+        />
         <button type="button" id="form-submit-button">Let's Play!</button>
       </form>
     </section>
@@ -33,14 +45,17 @@
       <div class="player-container">
         <div id="player-one-info">
           <div class="transparent" id="player-one-active">
-            <p class="material-symbols-outlined">keyboard_arrow_down</p>
+            <div class="material-symbols-outlined">keyboard_arrow_down</div>
           </div>
           <h2 id="player-one-name"></h2>
           <h4 class="score" id="player-one-score">Score:</h4>
         </div>
+        <div class="reset-button-container">
+          <button class="reset" id="resetBtn">Reset</button>
+        </div>
         <div id="player-two-info">
           <div class="transparent" id="player-two-active">
-            <p class="material-symbols-outlined">keyboard_arrow_down</p>
+            <div class="material-symbols-outlined">keyboard_arrow_down</div>
           </div>
           <h2 id="player-two-name"></h2>
           <h4 class="score" id="player-two-score">Score:</h4>
