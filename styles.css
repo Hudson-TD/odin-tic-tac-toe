@@ -71,8 +71,9 @@
 
 .player-container {
   display: flex;
-  gap: 100px;
+  gap: 200px;
   margin-bottom: 50px;
+  font-size: 1.15rem;
 }
 
 #player-one-info,
